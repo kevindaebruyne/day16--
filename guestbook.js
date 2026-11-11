@@ -21,6 +21,7 @@ function showList() {
     removeButton.addEventListener('click', function () {
       const removed = items.splice(i, 1);
       console.log('삭제 :', removed[0], '/ 남은 글', items.length, '개');
+      notice.textContent = '글을 삭제했습니다.';
       showList();
     });
     li.append(removeButton);
@@ -49,7 +50,7 @@ form.addEventListener('submit', function (event) {
     messageInput.focus();
     return;
   }
-  clearNotice();
+  notice.textContent = '글을 남겼습니다.';
   items.push(`${name}: ${message}`);
   console.log('추가 :', items[items.length - 1], '/ 전체 글', items.length, '개');
   showList();
