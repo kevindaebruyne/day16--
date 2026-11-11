@@ -19,13 +19,15 @@ function showList() {
     const removeButton = document.createElement('button');
     removeButton.textContent = '삭제';
     removeButton.addEventListener('click', function () {
-      items.splice(i, 1);
+      const removed = items.splice(i, 1);
+      console.log('삭제 :', removed[0], '/ 남은 글', items.length, '개');
       showList();
     });
     li.append(removeButton);
     list.append(li);
   }
   count.textContent = `${items.length}개`;
+  console.log('그린 뒤 items :', items);
   if (items.length === 0) {
     empty.textContent = '아직 남긴 글이 없습니다.';
   } else {
@@ -49,6 +51,7 @@ form.addEventListener('submit', function (event) {
   }
   clearNotice();
   items.push(`${name}: ${message}`);
+  console.log('추가 :', items[items.length - 1], '/ 전체 글', items.length, '개');
   showList();
   form.reset();
   nameInput.focus();
