@@ -1,5 +1,6 @@
 const form = document.querySelector('#guestbook-form');
 const nameInput = document.querySelector('#name');
+const emailInput = document.querySelector('#email');
 const messageInput = document.querySelector('#message');
 const notice = document.querySelector('#notice');
 const list = document.querySelector('#list');
@@ -39,6 +40,7 @@ function showList() {
 form.addEventListener('submit', function (event) {
   event.preventDefault();
   const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
   const message = messageInput.value.trim();
   if (name === '') {
     notice.textContent = '이름을 입력하세요.';
@@ -51,7 +53,11 @@ form.addEventListener('submit', function (event) {
     return;
   }
   notice.textContent = '글을 남겼습니다.';
-  items.push(`${name}: ${message}`);
+  if (email === '') {
+    items.push(`${name}: ${message}`);
+  } else {
+    items.push(`${name}(${email}): ${message}`);
+  }
   console.log('추가 :', items[items.length - 1], '/ 전체 글', items.length, '개');
   showList();
   form.reset();
